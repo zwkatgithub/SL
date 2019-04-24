@@ -1,0 +1,5 @@
+/.idea
+model*
+__pycache__/
+/.vs
+nohup.out

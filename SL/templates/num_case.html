@@ -1,0 +1,65 @@
+﻿{% import 'utils.html' as utils %}
+<!DOCTYPE html >
+
+<html>
+<head>
+<title>审核金额大小写</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+		<link href="/static/css/ie6.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<!--[if IE 7]>
+        <link href="/static/css/ie7.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+<script src="/static/scripts/modernizr-2.6.2.js"></script>
+</head>
+
+<body>
+<div id="background">
+  <div id="page">
+    <div class="header">
+      <div class="footer">
+        <div class="body">
+          <div id="sidebar">
+            <a href="http://www.bosc.cn/"><img id="logo" src="/static/images/bosc-logo.jpg" width="127" height="74" alt="" title=""/></a>
+
+            <ul class="navigation">
+              <li><a href="/">功能展示</a></li>
+              <li><a href="{{ url_for('ht_name') }}">合同名称</a></li>
+                                    <li><a href="{{ url_for('gys_name') }}">合同主体</a></li>
+              <li><a href="{{ url_for('pay_conditions') }}">支付条件</a></li>
+                                    <li><a href="{{ url_for('num_case') }}">金额大小写</a></li>
+                                    <li><a href="{{ url_for('ht_space') }}">合同空白</a></li>
+                                    <li><a href="{{ url_for('clause') }}">合同条款</a></li>
+            </ul>
+
+            <div class="footenote">
+              <span>&copy; Copyright &copy; 2019.</span>
+              <span><a href="/">SL-TEC</a> all rights reserved</span>
+            </div>
+
+          </div>
+
+          <div id="content">
+            <div class="content">
+              <ul>
+                <li>
+                  <h2>识别合同中出现数字金额的地方，并将数字金额转化为银行大写金额的形式，与合同中的大写金额进行比对检查</h2>
+                </li>
+
+                  {% block content %}
+                    <a type="button" href="/download/{{filename}}"><button type="button">下载</button></a>
+                  {% endblock %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="shadow"> </div>
+  </div>
+</div>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div></body>
+</html>

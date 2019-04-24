@@ -1,0 +1,107 @@
+{% import 'utils.html' as utils %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>{{title}}功能展示</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+
+    <!--[if IE 6]>
+		<link href="/static/css/ie6.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<!--[if IE 7]>
+        <link href="/static/css/ie7.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+<script src="/static/scripts/modernizr-2.6.2.js"></script>
+</head>
+
+<body>
+	  <div id="background">
+			  <div id="page">
+
+					 <div class="header">
+						<div class="footer">
+							<div class="body">
+
+									<div id="sidebar">
+									    <a href="http://www.bosc.cn/"><img id="logo" src="/static/images/bosc-logo.jpg" width="127" height="74" alt="" title=""/></a>
+
+										<ul class="navigation">
+											<li><a href="/">功能展示</a></li>
+											<li><a href="{{ url_for('ht_name') }}">合同名称</a></li>
+                                            <li><a href="{{ url_for('gys_name') }}">合同主体</a></li>
+											<li><a href="{{ url_for('pay_conditions') }}">支付条件</a></li>
+                                            <li><a href="{{ url_for('num_case') }}">金额大小写</a></li>
+                                            <li><a href="{{ url_for('ht_space') }}">合同空白</a></li>
+                                            <li><a href="{{ url_for('clause') }}">合同条款</a></li>
+										</ul>
+
+										<div class="footenote">
+										  <span>&copy; Copyright &copy; 2019.</span>
+										  <span><a href="/">SL-TEC</a> all rights reserved</span>
+										</div>
+
+									</div>
+
+                                    <div class="a">
+                                        
+                                            {% block content %}
+
+                                            {% endblock %}
+                                      
+                                        <hr />
+                                    </div>
+
+									<div id="content" >
+
+									    <img src="/static/images/智能审核.jpg" width="726" height="546" alt="" title="">
+                                        <div class="featured">
+										      <div class="header">
+											     <ul>
+														<li class="first">
+															<!--<p>hi.</p> -->
+															<img src="/static/images/hi.jpg" width="50" height="62" alt="" title="" >
+														</li>
+														<li class="last">
+                                                            <p>
+                                                                We are SL-TEC.<br /><br />
+                                                                Welcome to join us.
+                                                            </p>
+														</li>
+												 </ul>
+											  </div>
+											  <div class="body">
+											    <p>
+														The main function of our system is intelligent auditing for business contracts.
+												</p>
+
+												<p>
+														Major functions:<br />
+                                                        <span class='glyphicon glyphicon-save'></span> Words and figures matching <br />
+                                                        <span class='glyphicon glyphicon-save'></span> Payment inspection<br />
+                                                        <span class='glyphicon glyphicon-save'></span> Contract's blank inspection<br />
+                                                        <span class='glyphicon glyphicon-save'></span> Contract's name inspection<br />
+                                                        <span class='glyphicon glyphicon-save'></span> Parties of contract inspection<br />
+                                                        <span class='glyphicon glyphicon-save'></span> Negotiation terms inspection<br />
+												</p>
+											  </div>
+									    </div>
+									</div>
+                            </div>
+						</div>
+					 </div>
+					 <div class="shadow">&nbsp;</div>
+			  </div>
+	  </div>
+
+      <script src="/static/scripts/jquery-1.10.2.js"></script>
+      <script src="/static/scripts/bootstrap.js"></script>
+      <script src="/static/scripts/respond.js"></script>
+      {% block scripts %}{% endblock %}
+</body>
+
+</html>

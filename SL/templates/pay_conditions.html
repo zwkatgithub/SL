@@ -1,0 +1,66 @@
+﻿{% import 'utils.html' as utils %}
+<!DOCTYPE html >
+
+<html>
+<head>
+<title>审核支付条件</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+		<link href="/static/css/ie6.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<!--[if IE 7]>
+        <link href="/static/css/ie7.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+<script src="/static/scripts/modernizr-2.6.2.js"></script>
+</head>
+
+<body>
+<div id="background">
+  <div id="page">
+    <div class="header">
+      <div class="footer">
+        <div class="body">
+          <div id="sidebar">
+            <a href="http://www.bosc.cn/"><img id="logo" src="/static/images/bosc-logo.jpg" width="127" height="74" alt="" title=""/></a>
+
+            <ul class="navigation">
+              <li><a href="/">功能展示</a></li>
+              <li><a href="{{ url_for('ht_name') }}">合同名称</a></li>
+                                    <li><a href="{{ url_for('gys_name') }}">合同主体</a></li>
+              <li><a href="{{ url_for('pay_conditions') }}">支付条件</a></li>
+                                    <li><a href="{{ url_for('num_case') }}">金额大小写</a></li>
+                                    <li><a href="{{ url_for('ht_space') }}">合同空白</a></li>
+                                    <li><a href="{{ url_for('clause') }}">合同条款</a></li>
+            </ul>
+
+            <div class="footenote">
+              <span>&copy; Copyright &copy; 2019.</span>
+              <span><a href="/">SL-TEC</a> all rights reserved</span>
+            </div>
+
+          </div>
+
+          <div id="content">
+            <div class="content">
+              <ul>
+                <li>
+                  <h2>检查支付条件是否在合同中以百分比形式正确出现，并将用总金额与百分比的关系对每次应付金额进行检查</h2>
+                </li>
+
+                  {% block content %}
+                    {{utils.input("conditions", form.conditions, form)}}
+                    <a type="button" href="/download/{{filename}}"><button type="button">下载</button></a>
+                  {% endblock %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="shadow"> </div>
+  </div>
+</div>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div></body>
+</html>
