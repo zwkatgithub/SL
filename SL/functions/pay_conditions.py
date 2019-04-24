@@ -27,7 +27,7 @@ def check(total, a,b):
 
     print(a*0.01*total,' -- ' ,b)
 
-    if a*0.01*total < b:
+    if a*0.01*total == b:
         return True
     return False
 def check_sum(total, bs):

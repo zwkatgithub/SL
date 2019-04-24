@@ -21,11 +21,6 @@ from SL.forms.pay_conditions_form import PayConditionsForm
 from SL.forms.clause_form import ClauseForm
 
 
-@app.route("/all", methods=['GET'])
-def process_all():
-    pass
-
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -38,7 +33,6 @@ def index():
 
 @app.route('/clause',methods=['POST','GET'])
 def clause():
-    new_filename = None
     form = ClauseForm()
     #filename = session['filename']
     res = None
@@ -62,7 +56,7 @@ def clause():
 
 @app.route('/gys_name', methods=["POST","GET"])
 def gys_name():
-    new_filename = None
+    new_filename = session.get('filename',None)
     form = GysNameForm()
     if form.validate_on_submit():
         if session.get('filename',None) is None:
@@ -74,6 +68,8 @@ def gys_name():
             doc = str_name_inspect(form.str_name.data, doc)
             new_filename = bytes.decode(base64.b64encode(bytes(str(time.time()),encoding='utf-8'))) +'_'+ filename.split('_')[1]
             doc.save(os.path.join(UPLOAD_FOLDER,new_filename))
+            os.remove(os.path.join(UPLOAD_FOLDER,filename))
+            session['filename'] = new_filename
     return render_template(
         'gys_name.html',
         title='合同主体',
@@ -83,7 +79,7 @@ def gys_name():
 
 @app.route('/ht_name', methods=['GET','POST'])
 def ht_name():
-    new_filename = None
+    new_filename = session.get('filename',None)
     form = HtNameForm()
     if form.validate_on_submit():
         if session.get('filename',None) is None:
@@ -94,7 +90,8 @@ def ht_name():
             doc = ht_name_inspect(form.name.data,docx.Document(os.path.join(UPLOAD_FOLDER,filename)))
             new_filename = bytes.decode(base64.b64encode(bytes(str(time.time()),encoding='utf-8'))) +'_'+ filename.split('_')[1]
             doc.save(os.path.join(UPLOAD_FOLDER,new_filename))
-
+            session['filename'] = new_filename
+            os.remove(os.path.join(UPLOAD_FOLDER,filename))
     return render_template(
         'ht_name.html',
         title='合同名称',
@@ -104,7 +101,7 @@ def ht_name():
 
 @app.route('/ht_space',methods=["POST","GET"])
 def ht_space():
-    new_filename = None
+    new_filename = session.get('filename',None)
     if session.get('filename',None) is None:
         flash('未上传文档')
         filename = None
@@ -113,6 +110,8 @@ def ht_space():
         doc = ht_space_inspect(docx.Document(os.path.join(UPLOAD_FOLDER,filename)))
         new_filename = bytes.decode(base64.b64encode(bytes(str(time.time()),encoding='utf-8'))) +'_'+ filename.split('_')[1]
         doc.save(os.path.join(UPLOAD_FOLDER,new_filename))
+        session['filename'] = new_filename
+        os.remove(os.path.join(UPLOAD_FOLDER,filename))
     return render_template(
         'ht_space.html',
         title='合同空白',
@@ -121,7 +120,7 @@ def ht_space():
 
 @app.route('/num_case', methods=["POST","GET"])
 def num_case():
-    new_filename = None
+    new_filename = session.get('filename',None)
     if session.get('filename',None) is None:
         flash('未上传文档')
         filename = None
@@ -130,6 +129,8 @@ def num_case():
         doc = num_case_inspect(docx.Document(os.path.join(UPLOAD_FOLDER,filename)))
         new_filename = bytes.decode(base64.b64encode(bytes(str(time.time()),encoding='utf-8'))) +'_'+ filename.split('_')[1]
         doc.save(os.path.join(UPLOAD_FOLDER,new_filename))
+        session['filename'] = new_filename
+        os.remove(os.path.join(UPLOAD_FOLDER,filename))
     return render_template(
         'num_case.html',
         title='金额大小写',
@@ -138,7 +139,7 @@ def num_case():
 
 @app.route('/pay_conditions', methods=['POST','GET'])
 def pay_conditions():
-    new_filename = None
+    new_filename = session.get('filename',None)
     form = PayConditionsForm()
     if form.validate_on_submit():
         if session.get('filename',None) is None:
@@ -149,8 +150,8 @@ def pay_conditions():
             doc = pay_inspect(form.conditions.data,docx.Document(os.path.join(UPLOAD_FOLDER,filename)))
             new_filename = bytes.decode(base64.b64encode(bytes(str(time.time()),encoding='utf-8'))) +'_'+ filename.split('_')[1]
             doc.save(os.path.join(UPLOAD_FOLDER,new_filename))
-
-
+            session['filename'] = new_filename
+            os.remove(os.path.join(UPLOAD_FOLDER,filename))
     return render_template(
         'pay_conditions.html',
         title='支付条件',
